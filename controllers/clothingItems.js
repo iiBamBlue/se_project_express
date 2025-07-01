@@ -21,11 +21,9 @@ const getClothingItems = (req, res) => {
 
 // POST /items - creates a new item
 const createClothingItem = (req, res) => {
-  // eslint-disable-next-line no-underscore-dangle
   console.log(req.user._id); // _id will become accessible
 
   const { name, weather, imageUrl } = req.body;
-  // eslint-disable-next-line no-underscore-dangle
   const owner = req.user._id; // Take the user ID from the middleware
 
   ClothingItem.create({ name, weather, imageUrl, owner })
@@ -80,7 +78,6 @@ const likeItem = (req, res) => {
 
   ClothingItem.findByIdAndUpdate(
     itemId,
-    // eslint-disable-next-line no-underscore-dangle
     { $addToSet: { likes: req.user._id } }, // add _id to the array if it's not there yet
     { new: true }
   )
@@ -114,7 +111,6 @@ const dislikeItem = (req, res) => {
 
   ClothingItem.findByIdAndUpdate(
     itemId,
-    // eslint-disable-next-line no-underscore-dangle
     { $pull: { likes: req.user._id } }, // remove _id from the array
     { new: true }
   )

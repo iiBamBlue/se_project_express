@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     camelcase: ["error", { allow: ["_id"] }],
     "no-console": "off",
+    "no-underscore-dangle": ["error", { allow: ["_id"] }],
   },
 };
