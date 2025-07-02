@@ -36,21 +36,12 @@ app.use((req, res, next) => {
 // Use routes
 app.use("/", routes);
 
-// Custom 404 handler (must be after all routes)
-app.use((req, res) => {
-  res
-    .status(STATUS_CODES.NOT_FOUND)
-    .json({ message: mapErrorToResponse(ERROR_MESSAGES.RESOURCE_NOT_FOUND) });
-});
-
 // Custom error handler (must be last middleware)
 app.use((err, req, res) => {
   console.error(err.stack);
-  res
-    .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
-    .json({
-      message: mapErrorToResponse(ERROR_MESSAGES.INTERNAL_SERVER_ERROR),
-    });
+  res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+    message: mapErrorToResponse(ERROR_MESSAGES.INTERNAL_SERVER_ERROR),
+  });
 });
 
 // Start the server
