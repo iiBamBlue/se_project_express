@@ -21,7 +21,6 @@
     "lint": "npx eslint ."
   },
   "dependencies": {
-    "builtin-modules": "^1.1.1",
     "express": "^4.21.2",
     "helmet": "^8.1.0",
     "mongoose": "^8.16.1",

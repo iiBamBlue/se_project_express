@@ -1,3 +1,9 @@
+# Error Handling Architecture
+
+This project uses a centralized error-handling strategy to ensure consistent and expressive API responses.
+
+---
+
 ## Project Structure
 
 ```
@@ -13,6 +19,7 @@
 │   ├── users.js                 # User routes
 │   └── clothingItems.js         # Clothing item routes
 ├── utils/                     # Utility functions
+│   ├── errorHandler.js          # maps Mongoose errors to standardized HTTP responses
 │   ├── constants.js             # General constants
 │   └── errors.js                # Error messages
 ├── docs/                      # A dedicated folder for deeper dives
@@ -23,11 +30,17 @@
 ├── package.json               # Dependencies and scripts
 └── README.md                  # Project documentation-High-level overview, setup instructions, and usage examples
 ```
-MVC-inspired structure and explain the “why” behind it:
 
-- routes/ contains just the path definitions and delegates logic.
-- controllers/ isolate business logic, making it easier to debug and test.
-- models/ manage Mongoose schemas and database communication.
-- utils/ houses helper functions (like custom error classes).
+### 🔄 Flow Overview
 
-This structure improves readability, scalability, and makes it easy for newcomers to understand what belongs where. I can scaffold a section that compares pre-MVC spaghetti logic to this clean separation if you’d like to drive the point home visually.
+1. **Controllers** throw raw errors (e.g., Mongoose `CastError`, `ValidationError`, or custom errors).
+2. **`mapErrorToResponse()`** in `errorHandler.js` maps these to:
+   - `STATUS_CODES` (e.g., `BAD_REQUEST`, `CONFLICT`)
+   - `ERROR_MESSAGES` (e.g., `INVALID_ID`, `DUPLICATE_ENTRY`)
+3. **Route handlers** respond with clean, standardized JSON error objects.
+
+### 🧠 Why This Matters
+
+- Keeps route logic clean and focused
+- Avoids hardcoded strings or status codes
+- Makes debugging and testing easier (especially with Postman)
