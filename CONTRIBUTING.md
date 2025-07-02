@@ -1,4 +1,4 @@
-## Contributing
+# Contributing
 
 1. Follow the existing code style and conventions
 2. Run `npm run lint` before committing
