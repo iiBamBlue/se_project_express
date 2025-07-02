@@ -2,56 +2,16 @@
 
 ## Project Description
 
-The WTWR (What to Wear?) Express API is a robust backend server that powers the WTWR application. This RESTful API provides comprehensive functionality for managing users and clothing items, including features for creating, reading, updating, and deleting data, as well as a sophisticated like/unlike system for clothing items.
+The WTWR (What to Wear?) Express API is a robust backend server that powers the WTWR application. This RESTful API provides comprehensive functionality for managing users and clothing items, helping users make informed decisions about what to wear based on weather conditions.
 
-The API is designed to help users make informed decisions about what to wear based on weather conditions by managing a database of clothing items categorized by weather types (hot, warm, cold).
-
-## Features
-
-- **User Management**: Create and retrieve user profiles with avatar support
-- **Clothing Items**: Full CRUD operations for clothing items
-- **Weather Integration**: Clothing items categorized by weather conditions
-- **Like System**: Users can like and unlike clothing items
-- **Data Validation**: Comprehensive input validation and error handling
-- **MongoDB Integration**: Persistent data storage with MongoDB
-- **RESTful Design**: Clean, predictable API endpoints
-
-## Technologies and Techniques Used
-
-### Project Documentation
-
-- [Architecture Overview](./docs/architecture.md)
-- [Error Handling Strategy](./docs/error-handling.md)
-- [API Reference](./docs/api-reference.md)
-
-### Backend Technologies
+## Technologies
 
 - **Node.js** - Runtime environment
 - **Express.js** - Web application framework
-- **MongoDB** - NoSQL database for data persistence
-- **Mongoose** - ODM for MongoDB, providing schema validation
-
-### Development Tools
-
-- **ESLint** - Code linting with Airbnb style guide
-- **Prettier** - Code formatting
-- **Nodemon** - Development server with hot reload
-- **Validator** - Input validation library
-
-### Modern JavaScript Features (ES6+)
-
-- **Arrow Functions** - Concise function syntax
-- **Destructuring Assignment** - Extract values from objects and arrays
-- **Template Literals** - String interpolation
-- **Const/Let** - Block-scoped variable declarations
-- **Async/Await** - Promise-based asynchronous operations
-
-### API Design Patterns
-
-- **RESTful Architecture** - Stateless, cacheable API design
-- **MVC Pattern** - Separation of concerns with Models, Views, and Controllers
-- **Middleware Pattern** - Request processing pipeline
-- **Error Handling** - Centralized error management with appropriate HTTP status codes
+- **MongoDB** - NoSQL database
+- **Mongoose** - ODM for MongoDB
+- **Helmet** - Security middleware
+- **Validator** - Input validation
 
 ## Installation and Setup
 
@@ -79,40 +39,48 @@ The API is designed to help users make informed decisions about what to wear bas
    npm run dev      # Development mode with hot reload
    ```
 
+## Project Structure
+
+```text
+se_project_express/
+├── app.js                 # Main application entry point
+├── package.json           # Dependencies and scripts
+├── models/                # Mongoose schemas and models
+│   ├── user.js           # User model with validation
+│   └── clothingItem.js   # Clothing item model
+├── routes/               # Express route definitions
+│   ├── index.js         # Main router with 404 handling
+│   ├── users.js         # User-related routes
+│   └── clothingItems.js # Clothing item routes
+├── controllers/          # Route handler logic
+│   ├── users.js         # User controller functions
+│   └── clothingItems.js # Clothing item controllers
+├── utils/               # Utility modules
+│   ├── constants.js     # HTTP status codes and error handling
+│   └── errors.js        # Error message definitions
+└── .eslintrc.js         # ESLint configuration
+```
+
 ## Running the Project
 
 - `npm run start` — Launch the server in production mode
 - `npm run dev` — Launch the server with hot reload for development
 - `npm run lint` — Run ESLint to check code quality
 
-## Code Quality
+## Documentation
 
-- **ESLint Configuration** - Airbnb style guide with custom rules
-- **Prettier Integration** - Consistent code formatting
-- **Input Validation** - Mongoose schemas with custom validators
-- **Error Logging** - Detailed error messages for debugging
+For detailed information about the project architecture, API endpoints, error handling, and contributing guidelines, please refer to:
 
-## Future Enhancements
-
-- User authentication and authorization
-- Image upload functionality
-- Weather API integration
-- Advanced filtering and search
-- Rate limiting and security middleware
-- Unit and integration testing
+- `docs/architecture.md` - Application structure, design patterns, and architectural decisions
+- `docs/error-handling.md` - Comprehensive error handling philosophy and implementation details
+- `CONTRIBUTING.md` - API endpoints, data schemas, contribution guidelines, and development workflow
 
 ## Author
 
-**Darien Johnas**
+Darien Johnas
+
 - GitHub: [@iiBamBlue](https://github.com/iiBamBlue)
 
 ## License
 
-This project is licensed under the ISC License. to Wear?): Back End
-
-### Testing
-
-Before committing your code, make sure you edit the file `sprint.txt` in the root folder. The file `sprint.txt` should contain the number of the sprint you're currently working on. For ex. 12
-
-
-
+This project is licensed under the ISC License
