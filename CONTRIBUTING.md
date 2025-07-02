@@ -1,12 +1,9 @@
-- CONTRIBUTING.md: Guidelines for contributing, coding standards, and commit message format.
-
 ## Contributing
 
 1. Follow the existing code style and conventions
 2. Run `npm run lint` before committing
 3. Ensure all tests pass
 4. Update documentation as needed
-
 
 ## API Endpoints
 
@@ -23,7 +20,6 @@
 - `DELETE /items/:itemId` - Delete clothing item by ID
 - `PUT /items/:itemId/likes` - Like a clothing item
 - `DELETE /items/:itemId/likes` - Unlike a clothing item
-
 
 ## Data Models
 
@@ -49,12 +45,16 @@
 }
 ```
 
-
-
 ## Error Handling
 
 The API implements comprehensive error handling with appropriate HTTP status codes:
 
+- **200 OK** - Successful request
+- **201 Created** - Resource successfully created
+- **204 No Content** - Successful request with no content to return
 - **400 Bad Request** - Invalid data or malformed request
+- **401 Unauthorized** - Authentication required
+- **403 Forbidden** - Access denied
 - **404 Not Found** - Resource not found
+- **409 Conflict** - Resource conflict (e.g., duplicate entry)
 - **500 Internal Server Error** - Server-side errors

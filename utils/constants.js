@@ -1,3 +1,7 @@
+// This module defines constants used across the application, including HTTP status codes
+// It also provides a utility function to map errors to standardized HTTP responses.
+// This helps maintain consistency in error handling across the application.
+
 const { ERROR_MESSAGES } = require("./errors");
 const { mapErrorToResponse } = require("./errorHandler");
 

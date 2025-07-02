@@ -1,3 +1,5 @@
+// This module defines constants used across the application, including HTTP error messages
+
 // Error Messages
 const ERROR_MESSAGES = {
   VALIDATION_ERROR: "Invalid data passed to the methods",
