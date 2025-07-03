@@ -1,5 +1,9 @@
 const User = require("../models/user");
-const { STATUS_CODES, ERROR_MESSAGES, mapErrorToResponse } = require("../utils/constants");
+const {
+  STATUS_CODES,
+  ERROR_MESSAGES,
+  mapErrorToResponse,
+} = require("../utils/constants");
 
 // GET /users - returns all users
 function getUsers(req, res) {
@@ -7,7 +11,7 @@ function getUsers(req, res) {
     .then((users) => res.status(STATUS_CODES.OK).json(users))
     .catch((err) => {
       const { statusCode, message } = mapErrorToResponse(err);
-      res.status(statusCode).json({ message });
+      return res.status(statusCode).json({ message });
     });
 }
 
@@ -23,8 +27,13 @@ function getUser(req, res) {
     })
     .then((user) => res.status(STATUS_CODES.OK).json(user))
     .catch((err) => {
+      // Check if it's a custom error with a status code
+      if (err.statusCode) {
+        return res.status(err.statusCode).json({ message: err.message });
+      }
+      // Otherwise use the error mapping function
       const { statusCode, message } = mapErrorToResponse(err);
-      res.status(statusCode).json({ message });
+      return res.status(statusCode).json({ message });
     });
 }
 
@@ -36,7 +45,7 @@ function createUser(req, res) {
     .then((user) => res.status(STATUS_CODES.CREATED).json(user))
     .catch((err) => {
       const { statusCode, message } = mapErrorToResponse(err);
-      res.status(statusCode).json({ message });
+      return res.status(statusCode).json({ message });
     });
 }
 

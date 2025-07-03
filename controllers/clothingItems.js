@@ -1,14 +1,18 @@
 const ClothingItem = require("../models/clothingItem");
-const { STATUS_CODES, ERROR_MESSAGES, mapErrorToResponse } = require("../utils/constants");
+const {
+  STATUS_CODES,
+  ERROR_MESSAGES,
+  mapErrorToResponse,
+} = require("../utils/constants");
 
 // GET /items - returns all clothing items
 async function getClothingItems(req, res) {
   try {
     const items = await ClothingItem.find({});
-    res.status(STATUS_CODES.OK).json(items);
+    return res.status(STATUS_CODES.OK).json(items);
   } catch (err) {
     const { statusCode, message } = mapErrorToResponse(err);
-    res.status(statusCode).json({ message });
+    return res.status(statusCode).json({ message });
   }
 }
 
@@ -21,7 +25,7 @@ function createClothingItem(req, res) {
     .then((item) => res.status(STATUS_CODES.CREATED).json(item))
     .catch((err) => {
       const { statusCode, message } = mapErrorToResponse(err);
-      res.status(statusCode).json({ message });
+      return res.status(statusCode).json({ message });
     });
 }
 
@@ -41,8 +45,13 @@ function deleteClothingItem(req, res) {
         .json({ message: ERROR_MESSAGES.ITEM_DELETED });
     })
     .catch((err) => {
+      // Check if it's a custom error with a status code
+      if (err.statusCode) {
+        return res.status(err.statusCode).json({ message: err.message });
+      }
+      // Otherwise use the error mapping function
       const { statusCode, message } = mapErrorToResponse(err);
-      res.status(statusCode).json({ message });
+      return res.status(statusCode).json({ message });
     });
 }
 
@@ -62,8 +71,13 @@ function likeItem(req, res) {
     })
     .then((item) => res.status(STATUS_CODES.OK).json(item))
     .catch((err) => {
+      // Check if it's a custom error with a status code
+      if (err.statusCode) {
+        return res.status(err.statusCode).json({ message: err.message });
+      }
+      // Otherwise use the error mapping function
       const { statusCode, message } = mapErrorToResponse(err);
-      res.status(statusCode).json({ message });
+      return res.status(statusCode).json({ message });
     });
 }
 
@@ -83,8 +97,13 @@ function dislikeItem(req, res) {
     })
     .then((item) => res.status(STATUS_CODES.OK).json(item))
     .catch((err) => {
+      // Check if it's a custom error with a status code
+      if (err.statusCode) {
+        return res.status(err.statusCode).json({ message: err.message });
+      }
+      // Otherwise use the error mapping function
       const { statusCode, message } = mapErrorToResponse(err);
-      res.status(statusCode).json({ message });
+      return res.status(statusCode).json({ message });
     });
 }
 
