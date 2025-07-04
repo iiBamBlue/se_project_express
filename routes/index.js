@@ -15,7 +15,7 @@ router.use("/items", clothingItemRouter);
 router.use((req, res) => {
   res
     .status(STATUS_CODES.NOT_FOUND)
-    .json({ message: mapErrorToResponse(ERROR_MESSAGES.RESOURCE_NOT_FOUND) });
+    .json({ message: ERROR_MESSAGES.RESOURCE_NOT_FOUND });
 });
 
 module.exports = router;
